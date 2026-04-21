@@ -1,0 +1,53 @@
+.chat-panel {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.chat-panel.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.chat-bubble-user {
+    margin-left: auto;
+    max-width: 85%;
+    border-radius: 0.75rem;
+    background: #0e7490;
+    color: #ffffff;
+    padding: 0.5rem 0.75rem;
+}
+
+.chat-bubble-bot {
+    max-width: 85%;
+    border-radius: 0.75rem;
+    background: #e2e8f0;
+    color: #0f172a;
+    padding: 0.5rem 0.75rem;
+}
+
+.gallery-shot {
+    border-radius: 0.9rem;
+    transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.gallery-shot:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.18);
+}
+
+.chat-pulse-once {
+    animation: chatPulse 1.2s ease-out;
+}
+
+@keyframes chatPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.08);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
