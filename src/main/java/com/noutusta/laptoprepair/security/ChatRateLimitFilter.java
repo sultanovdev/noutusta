@@ -24,18 +24,21 @@ public class ChatRateLimitFilter extends OncePerRequestFilter {
     private final Map<String, Deque<Long>> requestBuckets = new ConcurrentHashMap<>();
     private final int maxRequests;
     private final long windowMillis;
+    private final long windowSeconds;
 
     public ChatRateLimitFilter(
             @Value("${app.chat.rate-limit.max-requests:20}") int maxRequests,
             @Value("${app.chat.rate-limit.window-seconds:60}") long windowSeconds
     ) {
         this.maxRequests = maxRequests;
+        this.windowSeconds = windowSeconds;
         this.windowMillis = windowSeconds * 1000;
     }
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        return !"/api/chat".equals(request.getRequestURI());
+        return !("/api/chat".equals(request.getRequestURI())
+                && "POST".equalsIgnoreCase(request.getMethod()));
     }
 
     @Override
@@ -49,15 +52,20 @@ public class ChatRateLimitFilter extends OncePerRequestFilter {
         Deque<Long> timestamps = requestBuckets.computeIfAbsent(clientIp, k -> new ArrayDeque<>());
 
         synchronized (timestamps) {
+            // Eski timestamplarni olib tashla
             while (!timestamps.isEmpty() && now - timestamps.peekFirst() > windowMillis) {
                 timestamps.pollFirst();
             }
 
             if (timestamps.size() >= maxRequests) {
                 log.warn("event=chat_rate_limited ip={} path={}", clientIp, request.getRequestURI());
-                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                response.setContentType("application/json");
-                response.getWriter().write("{\"error\":\"Juda kop sorov yuborildi. Birozdan song qayta urinib koring.\"}");
+                response.setStatus(429);
+                // FIX A: Retry-After header
+                response.setHeader("Retry-After", String.valueOf(windowSeconds));
+                response.setContentType("application/json;charset=UTF-8");
+                response.getWriter().write(
+                        "{\"error\":\"Juda ko'p so'rov yuborildi. Birozdan so'ng qayta urinib ko'ring.\"}"
+                );
                 return;
             }
             timestamps.addLast(now);
@@ -66,10 +74,21 @@ public class ChatRateLimitFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
+    /**
+     * FIX B: XFF spoofing kamaytirish.
+     * Rightmost non-blank segment = proxy qo'shgan qiymat.
+     * Agar reverse proxy bo'lmasa yoki XFF yo'q bo'lsa → getRemoteAddr().
+     */
     private String resolveClientIp(HttpServletRequest request) {
         String forwarded = request.getHeader("X-Forwarded-For");
         if (forwarded != null && !forwarded.isBlank()) {
-            return forwarded.split(",")[0].trim();
+            String[] parts = forwarded.split(",");
+            for (int i = parts.length - 1; i >= 0; i--) {
+                String candidate = parts[i].trim();
+                if (!candidate.isEmpty()) {
+                    return candidate;
+                }
+            }
         }
         return request.getRemoteAddr();
     }

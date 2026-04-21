@@ -56,25 +56,33 @@ public class AiClient {
 
             HttpEntity<Map<String, Object>> entity = new HttpEntity<>(payload, headers);
             OpenAiResponse response = aiRestTemplate.postForObject(aiUrl, entity, OpenAiResponse.class);
+
             if (response == null || response.choices() == null || response.choices().isEmpty()) {
                 log.warn("event=ai_fallback reason=empty_provider_response");
                 return Optional.empty();
             }
 
-            String content = response.choices().getFirst().message().content();
+            // FIX D-1: message() null tekshiruvi
+            Choice firstChoice = response.choices().getFirst();
+            if (firstChoice.message() == null) {
+                log.warn("event=ai_fallback reason=null_message");
+                return Optional.empty();
+            }
+
+            String content = firstChoice.message().content();
             return Optional.ofNullable(content).filter(c -> !c.isBlank());
+
         } catch (RestClientException ex) {
-            log.error("event=ai_request_failed message={}", ex.getMessage(), ex);
+            log.error("event=ai_request_failed type=rest_client message={}", ex.getMessage(), ex);
+            return Optional.empty();
+        } catch (RuntimeException ex) {
+            // FIX D-2: NPE va boshqa kutilmagan xatolar ham ushlandi
+            log.error("event=ai_request_failed type=unexpected message={}", ex.getMessage(), ex);
             return Optional.empty();
         }
     }
 
-    private record OpenAiResponse(List<Choice> choices) {
-    }
-
-    private record Choice(Message message) {
-    }
-
-    private record Message(String content) {
-    }
+    private record OpenAiResponse(List<Choice> choices) {}
+    private record Choice(Message message) {}
+    private record Message(String content) {}
 }

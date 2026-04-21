@@ -55,11 +55,11 @@
     <button id="chat-toggle"
             type="button"
             class="pointer-events-auto hidden h-12 w-12 rounded-full bg-cyan-600 text-xl text-white shadow-xl transition hover:bg-cyan-700 md:h-14 md:w-14 md:text-2xl"
-            th:aria-label="#{chat.open}"
-            data-chat-welcome-message="[[#{chat.welcome}]]"
-            data-chat-loading-message="[[#{chat.loading}]]"
-            data-chat-error-message="[[#{chat.error}]]"
-            data-chat-fallback-message="[[#{chat.fallback}]]">
+            th:attr="aria-label=#{chat.open},
+                 data-chat-welcome-message=#{chat.welcome},
+                 data-chat-loading-message=#{chat.loading},
+                 data-chat-error-message=#{chat.error},
+                 data-chat-fallback-message=#{chat.fallback}">
         💬
     </button>
 </div>
