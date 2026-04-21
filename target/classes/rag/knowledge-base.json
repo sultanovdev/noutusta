@@ -1,0 +1,44 @@
+[
+  {
+    "id": "services-screen",
+    "title": "Ekran ta'miri va almashtirish",
+    "content": "Biz noutbuk ekranidagi yoriq, tasvir chiqmasligi, chiziqlar yoki orqa yoritish muammolarini diagnostika qilamiz va kerak bo'lsa ekran almashtiramiz.",
+    "tags": ["ekran", "monitor", "display", "chiziq", "tasvir"]
+  },
+  {
+    "id": "services-battery-charging",
+    "title": "Batareya va zaryad muammolari",
+    "content": "Noutbuk zaryad olmayotgan bo'lsa, adapter, quvvat porti va batareya holatini tekshiramiz. Zarur holatda batareya yoki zaryad modulini almashtiramiz.",
+    "tags": ["zaryad", "batareya", "adapter", "port", "charging"]
+  },
+  {
+    "id": "services-keyboard-liquid",
+    "title": "Klaviatura va suyuqlik tegishi",
+    "content": "Klaviatura tugmalari ishlamasa yoki noutbuk ichiga suyuqlik tushgan bo'lsa, tozalash, tiklash va kerak bo'lsa komponent almashtirish xizmatini ko'rsatamiz.",
+    "tags": ["klaviatura", "suv", "suyuqlik", "tozalash"]
+  },
+  {
+    "id": "services-board-repair",
+    "title": "Plata (motherboard) diagnostikasi",
+    "content": "Plata nosozliklarida chuqur diagnostika qilinadi: quvvat zanjiri, mikrosxema va lehim muammolari tekshiriladi. Yakuniy narx nosozlik darajasiga qarab belgilanadi.",
+    "tags": ["plata", "motherboard", "mikrosxema", "quvvat zanjiri"]
+  },
+  {
+    "id": "pricing-diagnostics",
+    "title": "Diagnostika va narx",
+    "content": "Diagnostika odatda 20 000 so'mdan boshlanadi. Yakuniy ta'mir narxi ehtiyot qism va ish murakkabligiga bog'liq bo'ladi.",
+    "tags": ["narx", "price", "cost", "diagnostika"]
+  },
+  {
+    "id": "timing-repair",
+    "title": "Ta'mir vaqti",
+    "content": "Aksariyat ta'mir ishlari 24-48 soat ichida yakunlanadi. Murakkab holatlarda muddat qo'shimcha diagnostikadan so'ng aniq aytiladi.",
+    "tags": ["vaqt", "muddat", "time", "tez"]
+  },
+  {
+    "id": "contact-telegram",
+    "title": "Aloqa va Telegram",
+    "content": "Tezkor aloqa uchun ustaga Telegram orqali yozishingiz mumkin: @begaliyev1299. Telefon: +998 91 177 12 99.",
+    "tags": ["telegram", "aloqa", "usta", "telefon", "contact"]
+  }
+]

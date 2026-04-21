@@ -17,6 +17,7 @@ import java.util.Optional;
 @Component
 public class AiClient {
 
+    public static final String HANDOFF_TOKEN = "__HANDOFF__";
     private static final Logger log = LoggerFactory.getLogger(AiClient.class);
 
     private final RestTemplate aiRestTemplate;
@@ -35,6 +36,11 @@ public class AiClient {
     }
 
     public Optional<String> generateReply(String userMessage) {
+        return generateReplyWithContext(userMessage, List.of());
+    }
+
+    public Optional<String> generateReplyWithContext(String userMessage,
+                                                     List<KnowledgeBaseService.KnowledgeSnippet> contextSnippets) {
         if (apiKey == null || apiKey.isBlank()) {
             log.info("event=ai_fallback reason=missing_api_key");
             return Optional.empty();
@@ -45,13 +51,26 @@ public class AiClient {
             headers.setContentType(MediaType.APPLICATION_JSON);
             headers.setBearerAuth(apiKey);
 
+            String knowledgeContext = buildKnowledgeContext(contextSnippets);
             Map<String, Object> payload = Map.of(
                     "model", model,
                     "messages", List.of(
-                            Map.of("role", "system", "content", "You are a helpful laptop repair assistant."),
-                            Map.of("role", "user", "content", userMessage)
+                            Map.of("role", "system", "content", """
+                                    You are an assistant for a laptop repair service named Noutusta.
+                                    Use only the provided knowledge context.
+                                    If context is not enough or the question is outside context, return exactly %s.
+                                    Keep answer concise and practical in the user's language.
+                                    Do not fabricate prices, timings or contacts not in context.
+                                    """.formatted(HANDOFF_TOKEN)),
+                            Map.of("role", "user", "content", """
+                                    CUSTOMER QUESTION:
+                                    %s
+
+                                    KNOWLEDGE CONTEXT:
+                                    %s
+                                    """.formatted(userMessage, knowledgeContext))
                     ),
-                    "temperature", 0.3
+                    "temperature", 0.2
             );
 
             HttpEntity<Map<String, Object>> entity = new HttpEntity<>(payload, headers);
@@ -85,4 +104,22 @@ public class AiClient {
     private record OpenAiResponse(List<Choice> choices) {}
     private record Choice(Message message) {}
     private record Message(String content) {}
+
+    private String buildKnowledgeContext(List<KnowledgeBaseService.KnowledgeSnippet> contextSnippets) {
+        if (contextSnippets == null || contextSnippets.isEmpty()) {
+            return "(no relevant context)";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < contextSnippets.size(); i++) {
+            KnowledgeBaseService.KnowledgeSnippet snippet = contextSnippets.get(i);
+            sb.append(i + 1)
+                    .append(". ")
+                    .append(snippet.title())
+                    .append(": ")
+                    .append(snippet.content())
+                    .append("\n");
+        }
+        return sb.toString().trim();
+    }
 }

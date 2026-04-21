@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Locale;
+
 @RestController
 @RequestMapping("/api/chat")
 public class ChatController {
@@ -24,9 +26,9 @@ public class ChatController {
     }
 
     @PostMapping
-    public ResponseEntity<ChatResponse> chat(@Valid @RequestBody ChatRequest request) {
-        log.info("event=chat_request length={}", request.message().length());
-        ChatResponse response = chatService.processMessage(request.message());
+    public ResponseEntity<ChatResponse> chat(@Valid @RequestBody ChatRequest request, Locale locale) {
+        log.info("event=chat_request length={} locale={}", request.message().length(), locale.getLanguage());
+        ChatResponse response = chatService.processMessage(request.message(), locale);
         return ResponseEntity.ok(response);
     }
 }

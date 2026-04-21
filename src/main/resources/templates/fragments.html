@@ -10,9 +10,9 @@
             <a th:href="@{/contact}" class="hover:text-cyan-300" th:text="#{nav.contact}"></a>
         </div>
         <div class="flex items-center gap-2 text-xs">
-            <a th:href="@{__${currentPath}__(lang='uz')}" class="rounded border border-slate-600 px-2 py-1 hover:bg-slate-800" th:text="#{nav.lang.uz}"></a>
-            <a th:href="@{__${currentPath}__(lang='ru')}" class="rounded border border-slate-600 px-2 py-1 hover:bg-slate-800" th:text="#{nav.lang.ru}"></a>
-            <a th:href="@{__${currentPath}__(lang='en')}" class="rounded border border-slate-600 px-2 py-1 hover:bg-slate-800" th:text="#{nav.lang.en}"></a>
+            <a th:href="@{/lang/{languageCode}(languageCode='uz',redirect=${currentPath})}" class="rounded border border-slate-600 px-2 py-1 hover:bg-slate-800" th:text="#{nav.lang.uz}"></a>
+            <a th:href="@{/lang/{languageCode}(languageCode='ru',redirect=${currentPath})}" class="rounded border border-slate-600 px-2 py-1 hover:bg-slate-800" th:text="#{nav.lang.ru}"></a>
+            <a th:href="@{/lang/{languageCode}(languageCode='en',redirect=${currentPath})}" class="rounded border border-slate-600 px-2 py-1 hover:bg-slate-800" th:text="#{nav.lang.en}"></a>
         </div>
     </nav>
 </header>
@@ -31,7 +31,7 @@
 
 <div th:fragment="chatWidget" class="pointer-events-none fixed bottom-4 right-4 z-50">
     <div id="chat-panel"
-         class="chat-panel mb-3 hidden w-[92vw] max-w-sm rounded-2xl bg-white shadow-2xl ring-1 ring-slate-200">
+         class="chat-panel pointer-events-auto mb-3 hidden w-[92vw] max-w-sm rounded-2xl bg-white shadow-2xl ring-1 ring-slate-200">
         <div class="flex items-center justify-between rounded-t-2xl bg-slate-950 px-4 py-3 text-white">
             <p class="font-semibold" th:text="#{chat.title}"></p>
             <button id="chat-close" class="text-sm text-slate-300 hover:text-white" type="button" th:text="#{chat.close}"></button>
@@ -59,7 +59,8 @@
                  data-chat-welcome-message=#{chat.welcome},
                  data-chat-loading-message=#{chat.loading},
                  data-chat-error-message=#{chat.error},
-                 data-chat-fallback-message=#{chat.fallback}">
+                 data-chat-fallback-message=#{chat.fallback},
+                 data-chat-handoff-button=#{chat.handoff.button}">
         💬
     </button>
 </div>

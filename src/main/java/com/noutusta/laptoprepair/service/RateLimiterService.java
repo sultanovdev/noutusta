@@ -1,14 +1,14 @@
 package com.noutusta.laptoprepair.service;
 
 import com.noutusta.laptoprepair.config.RateLimitProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Deque;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
-@Component
+@Service
 public class RateLimiterService {
 
     private final RateLimitProperties props;

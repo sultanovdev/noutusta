@@ -10,6 +10,6 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 public class RateLimitProperties {
-    private int maxRequests;
-    private int windowSeconds;
+    private int maxRequests = 20;
+    private int windowSeconds = 60;
 }
