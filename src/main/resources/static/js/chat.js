@@ -140,7 +140,7 @@
         button.href = url;
         button.target = "_blank";
         button.rel = "noopener noreferrer";
-        button.className = "chat-bubble-bot mt-2 inline-block bg-cyan-100 text-cyan-800 hover:bg-cyan-200";
+        button.className = "chat-bubble-bot chat-action-link";
         button.textContent = label;
         chatMessages.appendChild(button);
         chatMessages.scrollTop = chatMessages.scrollHeight;

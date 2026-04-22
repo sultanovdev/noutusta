@@ -1,60 +1,62 @@
 <!DOCTYPE html>
 <html lang="uz" xmlns:th="http://www.thymeleaf.org">
 <body>
-<header th:fragment="navbar(currentPath)" class="bg-slate-950 text-white">
-    <nav class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-4">
-        <a th:href="@{/}" class="font-bold tracking-wide" th:text="#{brand.name}"></a>
+<header th:fragment="navbar(currentPath)" class="liquid-navbar-wrap px-4">
+    <nav class="liquid-navbar mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-4">
+        <a th:href="@{/}" class="liquid-brand" th:text="#{brand.name}"></a>
         <div class="flex items-center gap-4 text-sm">
-            <a th:href="@{/}" class="hover:text-cyan-300" th:text="#{nav.home}"></a>
-            <a th:href="@{/services}" class="hover:text-cyan-300" th:text="#{nav.services}"></a>
-            <a th:href="@{/contact}" class="hover:text-cyan-300" th:text="#{nav.contact}"></a>
+            <a th:href="@{/}" class="liquid-nav-link" th:text="#{nav.home}"></a>
+            <a th:href="@{/services}" class="liquid-nav-link" th:text="#{nav.services}"></a>
+            <a th:href="@{/contact}" class="liquid-nav-link" th:text="#{nav.contact}"></a>
         </div>
         <div class="flex items-center gap-2 text-xs">
-            <a th:href="@{/lang/{languageCode}(languageCode='uz',redirect=${currentPath})}" class="rounded border border-slate-600 px-2 py-1 hover:bg-slate-800" th:text="#{nav.lang.uz}"></a>
-            <a th:href="@{/lang/{languageCode}(languageCode='ru',redirect=${currentPath})}" class="rounded border border-slate-600 px-2 py-1 hover:bg-slate-800" th:text="#{nav.lang.ru}"></a>
-            <a th:href="@{/lang/{languageCode}(languageCode='en',redirect=${currentPath})}" class="rounded border border-slate-600 px-2 py-1 hover:bg-slate-800" th:text="#{nav.lang.en}"></a>
+            <a th:href="@{/lang/{languageCode}(languageCode='uz',redirect=${currentPath})}" class="liquid-lang-switch rounded px-2 py-1" th:text="#{nav.lang.uz}"></a>
+            <a th:href="@{/lang/{languageCode}(languageCode='ru',redirect=${currentPath})}" class="liquid-lang-switch rounded px-2 py-1" th:text="#{nav.lang.ru}"></a>
+            <a th:href="@{/lang/{languageCode}(languageCode='en',redirect=${currentPath})}" class="liquid-lang-switch rounded px-2 py-1" th:text="#{nav.lang.en}"></a>
         </div>
     </nav>
 </header>
 
-<div th:fragment="stickyCta" class="fixed bottom-4 left-4 z-40 flex flex-col gap-2">
+<div th:fragment="stickyCta" class="liquid-floating-stack fixed bottom-4 left-4 z-40 flex flex-col">
     <a href="tel:+998911771299"
-       class="rounded-full bg-emerald-500 px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-emerald-600">
+       class="liquid-float-btn is-call rounded-full px-5 py-3 text-sm font-semibold transition">
         +998 91 177 12 99
     </a>
     <a href="https://t.me/begaliyev1299"
        target="_blank"
        rel="noopener noreferrer"
-       class="rounded-full bg-sky-500 px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-sky-600"
+       data-telegram-track="true"
+       data-telegram-source="sticky_cta"
+       class="liquid-float-btn is-telegram rounded-full px-5 py-3 text-sm font-semibold transition"
        th:text="#{btn.telegram}"></a>
 </div>
 
 <div th:fragment="chatWidget" class="pointer-events-none fixed bottom-4 right-4 z-50">
     <div id="chat-panel"
-         class="chat-panel pointer-events-auto mb-3 hidden w-[92vw] max-w-sm rounded-2xl bg-white shadow-2xl ring-1 ring-slate-200">
-        <div class="flex items-center justify-between rounded-t-2xl bg-slate-950 px-4 py-3 text-white">
+         class="chat-panel pointer-events-auto mb-3 hidden w-[92vw] max-w-sm rounded-2xl">
+        <div class="chat-panel-head flex items-center justify-between rounded-t-2xl px-4 py-3 text-white">
             <p class="font-semibold" th:text="#{chat.title}"></p>
-            <button id="chat-close" class="text-sm text-slate-300 hover:text-white" type="button" th:text="#{chat.close}"></button>
+            <button id="chat-close" class="text-sm liquid-muted hover:text-white" type="button" th:text="#{chat.close}"></button>
         </div>
-        <div id="chat-messages" class="h-72 space-y-3 overflow-y-auto px-4 py-3 text-sm"></div>
-        <form id="chat-form" class="flex gap-2 border-t border-slate-200 p-3">
+        <div id="chat-messages" class="h-72 space-y-3 overflow-y-auto px-4 py-3 text-sm liquid-muted"></div>
+        <form id="chat-form" class="chat-form flex gap-2 p-3">
             <input id="chat-input"
                    name="message"
                    type="text"
                    maxlength="500"
                    required
                    th:placeholder="#{chat.placeholder}"
-                   class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:border-cyan-500 focus:outline-none">
+                   class="chat-input w-full rounded-lg px-3 py-2 text-sm">
             <button id="chat-submit"
                     type="submit"
-                    class="rounded-lg bg-cyan-600 px-4 py-2 text-sm font-semibold text-white hover:bg-cyan-700"
+                    class="chat-submit rounded-lg px-4 py-2 text-sm font-semibold"
                     th:text="#{chat.send}"></button>
         </form>
     </div>
 
     <button id="chat-toggle"
             type="button"
-            class="pointer-events-auto hidden h-12 w-12 rounded-full bg-cyan-600 text-xl text-white shadow-xl transition hover:bg-cyan-700 md:h-14 md:w-14 md:text-2xl"
+            class="chat-toggle pointer-events-auto hidden h-12 w-12 rounded-full text-xl shadow-xl transition md:h-14 md:w-14 md:text-2xl"
             th:attr="aria-label=#{chat.open},
                  data-chat-welcome-message=#{chat.welcome},
                  data-chat-loading-message=#{chat.loading},
@@ -65,7 +67,7 @@
     </button>
 </div>
 
-<footer th:fragment="footer" class="mt-16 bg-slate-950 px-4 py-8 text-center text-sm text-slate-300">
+<footer th:fragment="footer" class="liquid-footer mt-16 px-4 py-8 text-center text-sm liquid-muted">
     <p th:text="#{footer.text}"></p>
 </footer>
 </body>

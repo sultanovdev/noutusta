@@ -1,8 +1,11 @@
 com/noutusta/laptoprepair/LaptopRepairApplicationTests.class
+com/noutusta/laptoprepair/service/TelegramNotificationServiceTest.class
 com/noutusta/laptoprepair/config/LanguageQueryParamFilterTest.class
 com/noutusta/laptoprepair/controller/LanguageControllerTest.class
+com/noutusta/laptoprepair/controller/TelegramVisitControllerTest.class
 com/noutusta/laptoprepair/controller/ChatControllerTest.class
 com/noutusta/laptoprepair/controller/ChatControllerTest$Payload.class
 com/noutusta/laptoprepair/service/ChatServiceTest.class
 com/noutusta/laptoprepair/controller/WebControllerTest.class
+com/noutusta/laptoprepair/controller/TelegramVisitControllerTest$Payload.class
 com/noutusta/laptoprepair/service/KnowledgeBaseServiceTest.class

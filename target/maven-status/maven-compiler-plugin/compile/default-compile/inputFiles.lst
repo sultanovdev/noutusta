@@ -6,14 +6,17 @@
 /Users/sultan/adobe-packager/noutusta/src/main/java/com/noutusta/laptoprepair/config/RagProperties.java
 /Users/sultan/adobe-packager/noutusta/src/main/java/com/noutusta/laptoprepair/config/RateLimitFilter.java
 /Users/sultan/adobe-packager/noutusta/src/main/java/com/noutusta/laptoprepair/config/RateLimitProperties.java
+/Users/sultan/adobe-packager/noutusta/src/main/java/com/noutusta/laptoprepair/config/TelegramClientConfig.java
 /Users/sultan/adobe-packager/noutusta/src/main/java/com/noutusta/laptoprepair/config/WebConfig.java
 /Users/sultan/adobe-packager/noutusta/src/main/java/com/noutusta/laptoprepair/controller/ChatController.java
 /Users/sultan/adobe-packager/noutusta/src/main/java/com/noutusta/laptoprepair/controller/LanguageController.java
+/Users/sultan/adobe-packager/noutusta/src/main/java/com/noutusta/laptoprepair/controller/TelegramVisitController.java
 /Users/sultan/adobe-packager/noutusta/src/main/java/com/noutusta/laptoprepair/controller/WebController.java
 /Users/sultan/adobe-packager/noutusta/src/main/java/com/noutusta/laptoprepair/exception/GlobalExceptionHandler.java
 /Users/sultan/adobe-packager/noutusta/src/main/java/com/noutusta/laptoprepair/model/ChatMessageLog.java
 /Users/sultan/adobe-packager/noutusta/src/main/java/com/noutusta/laptoprepair/model/ChatRequest.java
 /Users/sultan/adobe-packager/noutusta/src/main/java/com/noutusta/laptoprepair/model/ChatResponse.java
+/Users/sultan/adobe-packager/noutusta/src/main/java/com/noutusta/laptoprepair/model/TelegramVisitRequest.java
 /Users/sultan/adobe-packager/noutusta/src/main/java/com/noutusta/laptoprepair/repository/ChatLogRepository.java
 /Users/sultan/adobe-packager/noutusta/src/main/java/com/noutusta/laptoprepair/repository/InMemoryChatLogRepository.java
 /Users/sultan/adobe-packager/noutusta/src/main/java/com/noutusta/laptoprepair/service/AiClient.java
@@ -21,3 +24,4 @@
 /Users/sultan/adobe-packager/noutusta/src/main/java/com/noutusta/laptoprepair/service/ChatService.java
 /Users/sultan/adobe-packager/noutusta/src/main/java/com/noutusta/laptoprepair/service/KnowledgeBaseService.java
 /Users/sultan/adobe-packager/noutusta/src/main/java/com/noutusta/laptoprepair/service/RateLimiterService.java
+/Users/sultan/adobe-packager/noutusta/src/main/java/com/noutusta/laptoprepair/service/TelegramNotificationService.java
