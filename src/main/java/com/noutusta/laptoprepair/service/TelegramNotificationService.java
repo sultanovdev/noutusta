@@ -18,8 +18,6 @@ import java.util.Map;
 public class TelegramNotificationService {
 
     private static final Logger log = LoggerFactory.getLogger(TelegramNotificationService.class);
-    private static final int MAX_UA_LENGTH = 180;
-
     private final RestTemplate telegramRestTemplate;
     private final boolean notifyEnabled;
     private final String botToken;
@@ -75,26 +73,20 @@ public class TelegramNotificationService {
     }
 
     private String buildMessageText(TelegramVisitRequest visitRequest, HttpServletRequest request) {
-        String source = sanitize(visitRequest.source(), "unknown", 64);
-        String target = sanitize(visitRequest.target(), "-", 400);
-        String page = sanitize(visitRequest.page(), "-", 300);
-        String referrer = sanitize(visitRequest.referrer(), "-", 400);
+        String source = sanitize(visitRequest.source(), "telegram_link", 64);
+        String page = sanitize(visitRequest.page(), "/", 300);
         String lang = sanitize(visitRequest.lang(), "-", 16);
         String ip = sanitize(resolveClientIp(request), "unknown", 80);
-        String userAgent = sanitize(request.getHeader("User-Agent"), "-", MAX_UA_LENGTH);
         String timestamp = Instant.now().toString();
 
         return """
-                New Telegram click from website
-                Source: %s
-                Target: %s
-                Page: %s
-                Referrer: %s
-                Lang: %s
+                Saytdan Telegramingizni odam ko'rdi yoki yozish uchun kirdi.
+                Manba: %s
+                Sahifa: %s
+                Til: %s
                 IP: %s
-                User-Agent: %s
-                Time: %s
-                """.formatted(source, target, page, referrer, lang, ip, userAgent, timestamp).trim();
+                Vaqt: %s
+                """.formatted(source, page, lang, ip, timestamp).trim();
     }
 
     private String resolveClientIp(HttpServletRequest request) {
