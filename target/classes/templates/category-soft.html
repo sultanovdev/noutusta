@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uz" xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soft | Noutusta</title>
+    <meta name="description" content="Dasturiy xizmatlar va sozlash narxlari.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body class="liquid-body">
+<div th:replace="~{fragments :: navbar('/categories/soft')}"></div>
+
+<main class="mx-auto max-w-6xl px-4 py-12">
+    <a th:href="@{/services#categories}" class="liquid-inline-link text-sm font-semibold">&larr; Kategoriyalarga qaytish</a>
+    <section class="mt-5 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+        <div>
+            <p class="liquid-badge inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold">03 Kategoriya</p>
+            <h1 class="mt-3 text-3xl font-extrabold">Soft</h1>
+            <p class="liquid-muted mt-3 max-w-2xl">Windows, dasturlar, drayverlar va xavfsizlik bo'yicha xizmatlar.</p>
+        </div>
+        <a th:href="@{/contact}" class="liquid-btn-primary px-5 py-3 text-center font-semibold">Buyurtma berish</a>
+    </section>
+
+    <section class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <article class="liquid-card price-card rounded-2xl p-5">
+            <div class="flex items-start justify-between gap-3">
+                <h2 class="text-lg font-semibold">Windows o'rnatish</h2>
+                <span class="price-badge">150 000 so'mdan</span>
+            </div>
+            <p class="liquid-muted mt-3 text-sm">Windows 10/11, aktivatsiya va boshlang'ich sozlash.</p>
+        </article>
+        <article class="liquid-card price-card rounded-2xl p-5">
+            <div class="flex items-start justify-between gap-3">
+                <h2 class="text-lg font-semibold">Drayverlar sozlash</h2>
+                <span class="price-badge">80 000 so'mdan</span>
+            </div>
+            <p class="liquid-muted mt-3 text-sm">Video, Wi-Fi, audio va chipset drayverlari.</p>
+        </article>
+        <article class="liquid-card price-card rounded-2xl p-5">
+            <div class="flex items-start justify-between gap-3">
+                <h2 class="text-lg font-semibold">Viruslardan tozalash</h2>
+                <span class="price-badge">120 000 so'mdan</span>
+            </div>
+            <p class="liquid-muted mt-3 text-sm">Zararli dasturlarni topish va tizimni tiklash.</p>
+        </article>
+        <article class="liquid-card price-card rounded-2xl p-5">
+            <div class="flex items-start justify-between gap-3">
+                <h2 class="text-lg font-semibold">Office o'rnatish</h2>
+                <span class="price-badge">100 000 so'mdan</span>
+            </div>
+            <p class="liquid-muted mt-3 text-sm">Ish va o'qish uchun kerakli ofis dasturlari.</p>
+        </article>
+        <article class="liquid-card price-card rounded-2xl p-5">
+            <div class="flex items-start justify-between gap-3">
+                <h2 class="text-lg font-semibold">Ma'lumot tiklash</h2>
+                <span class="price-badge">200 000 so'mdan</span>
+            </div>
+            <p class="liquid-muted mt-3 text-sm">Disk, fleshka yoki tizimdan o'chgan fayllarni tiklash.</p>
+        </article>
+        <article class="liquid-card price-card rounded-2xl p-5">
+            <div class="flex items-start justify-between gap-3">
+                <h2 class="text-lg font-semibold">Tizim optimizatsiyasi</h2>
+                <span class="price-badge">120 000 so'mdan</span>
+            </div>
+            <p class="liquid-muted mt-3 text-sm">Sekinlashgan tizimni yengillashtirish va sozlash.</p>
+        </article>
+    </section>
+</main>
+
+<div th:replace="~{fragments :: stickyCta}"></div>
+<div th:replace="~{fragments :: chatWidget}"></div>
+<div th:replace="~{fragments :: footer}"></div>
+<script th:src="@{/js/chat.js}" defer></script>
+<script th:src="@{/js/telegram-visit.js}" defer></script>
+</body>
+</html>

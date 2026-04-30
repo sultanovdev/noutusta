@@ -47,4 +47,23 @@ class WebControllerTest {
                 .andExpect(view().name("contact"))
                 .andExpect(content().string(containsString("/lang/uz")));
     }
+
+    @Test
+    void categoryPagesLoad() throws Exception {
+        mockMvc.perform(get("/categories/accessories-tech"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("category-accessories-tech"));
+
+        mockMvc.perform(get("/categories/laptop-pc"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("category-laptop-pc"));
+
+        mockMvc.perform(get("/categories/soft"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("category-soft"));
+
+        mockMvc.perform(get("/categories/batteries-chargers"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("category-batteries-chargers"));
+    }
 }

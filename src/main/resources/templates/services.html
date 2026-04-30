@@ -15,6 +15,39 @@
     <h1 class="text-3xl font-extrabold" th:text="#{services.title}"></h1>
     <p class="liquid-muted mt-3 max-w-2xl" th:text="#{services.subtitle}"></p>
 
+    <section id="categories" class="mt-8 scroll-mt-28">
+        <div class="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
+            <div>
+                <p class="liquid-badge inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold" th:text="#{categories.badge}"></p>
+                <h2 class="mt-3 text-2xl font-bold" th:text="#{categories.title}"></h2>
+            </div>
+            <p class="liquid-muted max-w-xl text-sm" th:text="#{categories.subtitle}"></p>
+        </div>
+
+        <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <a th:href="@{/categories/accessories-tech}" class="liquid-card category-card rounded-2xl p-5">
+                <span class="category-icon">01</span>
+                <h3 class="mt-4 font-semibold" th:text="#{category.accessories.title}"></h3>
+                <p class="liquid-muted mt-2 text-sm" th:text="#{category.accessories.desc}"></p>
+            </a>
+            <a th:href="@{/categories/laptop-pc}" class="liquid-card category-card rounded-2xl p-5">
+                <span class="category-icon">02</span>
+                <h3 class="mt-4 font-semibold" th:text="#{category.laptop.title}"></h3>
+                <p class="liquid-muted mt-2 text-sm" th:text="#{category.laptop.desc}"></p>
+            </a>
+            <a th:href="@{/categories/soft}" class="liquid-card category-card rounded-2xl p-5">
+                <span class="category-icon">03</span>
+                <h3 class="mt-4 font-semibold" th:text="#{category.soft.title}"></h3>
+                <p class="liquid-muted mt-2 text-sm" th:text="#{category.soft.desc}"></p>
+            </a>
+            <a th:href="@{/categories/batteries-chargers}" class="liquid-card category-card rounded-2xl p-5">
+                <span class="category-icon">04</span>
+                <h3 class="mt-4 font-semibold" th:text="#{category.battery.title}"></h3>
+                <p class="liquid-muted mt-2 text-sm" th:text="#{category.battery.desc}"></p>
+            </a>
+        </div>
+    </section>
+
     <div class="mt-8 grid gap-5 sm:grid-cols-2">
         <article class="liquid-card rounded-2xl p-6">
             <h2 class="text-xl font-semibold" th:text="#{services.card1.title}"></h2>

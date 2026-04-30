@@ -20,4 +20,24 @@ public class WebController {
     public String contact() {
         return "contact";
     }
+
+    @GetMapping("/categories/accessories-tech")
+    public String accessoriesTech() {
+        return "category-accessories-tech";
+    }
+
+    @GetMapping("/categories/laptop-pc")
+    public String laptopPc() {
+        return "category-laptop-pc";
+    }
+
+    @GetMapping("/categories/soft")
+    public String soft() {
+        return "category-soft";
+    }
+
+    @GetMapping("/categories/batteries-chargers")
+    public String batteriesChargers() {
+        return "category-batteries-chargers";
+    }
 }

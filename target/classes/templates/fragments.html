@@ -7,6 +7,15 @@
         <div class="flex items-center gap-4 text-sm">
             <a th:href="@{/}" class="liquid-nav-link" th:text="#{nav.home}"></a>
             <a th:href="@{/services}" class="liquid-nav-link" th:text="#{nav.services}"></a>
+            <details class="liquid-category-menu relative">
+                <summary class="liquid-nav-link cursor-pointer list-none" th:text="#{nav.categories}"></summary>
+                <div class="liquid-category-dropdown">
+                    <a th:href="@{/categories/accessories-tech}" class="liquid-category-link" th:text="#{category.accessories.title}"></a>
+                    <a th:href="@{/categories/laptop-pc}" class="liquid-category-link" th:text="#{category.laptop.title}"></a>
+                    <a th:href="@{/categories/soft}" class="liquid-category-link" th:text="#{category.soft.title}"></a>
+                    <a th:href="@{/categories/batteries-chargers}" class="liquid-category-link" th:text="#{category.battery.title}"></a>
+                </div>
+            </details>
             <a th:href="@{/contact}" class="liquid-nav-link" th:text="#{nav.contact}"></a>
         </div>
         <div class="flex items-center gap-2 text-xs">

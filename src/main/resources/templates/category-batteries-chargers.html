@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uz" xmlns:th="http://www.thymeleaf.org" th:lang="${#locale.language}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batareya zaryadlagichlar | Noutusta</title>
+    <meta name="description" content="Batareya, zaryadlovchi va quvvat zanjiri narxlari.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body class="liquid-body">
+<div th:replace="~{fragments :: navbar('/categories/batteries-chargers')}"></div>
+
+<main class="mx-auto max-w-6xl px-4 py-12">
+    <a th:href="@{/services#categories}" class="liquid-inline-link text-sm font-semibold">&larr; Kategoriyalarga qaytish</a>
+    <section class="mt-5 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+        <div>
+            <p class="liquid-badge inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold">04 Kategoriya</p>
+            <h1 class="mt-3 text-3xl font-extrabold">Batareya zaryadlagichlar</h1>
+            <p class="liquid-muted mt-3 max-w-2xl">Batareya, adapter va zaryad tizimi bo'yicha xizmatlar.</p>
+        </div>
+        <a th:href="@{/contact}" class="liquid-btn-primary px-5 py-3 text-center font-semibold">Buyurtma berish</a>
+    </section>
+
+    <section class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <article class="liquid-card price-card rounded-2xl p-5">
+            <div class="flex items-start justify-between gap-3">
+                <h2 class="text-lg font-semibold">Batareya almashtirish</h2>
+                <span class="price-badge">450 000 so'mdan</span>
+            </div>
+            <p class="liquid-muted mt-3 text-sm">Modelga mos batareya va kalibrovka bilan.</p>
+        </article>
+        <article class="liquid-card price-card rounded-2xl p-5">
+            <div class="flex items-start justify-between gap-3">
+                <h2 class="text-lg font-semibold">Original adapter</h2>
+                <span class="price-badge">280 000 so'mdan</span>
+            </div>
+            <p class="liquid-muted mt-3 text-sm">HP, Lenovo, ASUS, Acer va boshqa modellarga.</p>
+        </article>
+        <article class="liquid-card price-card rounded-2xl p-5">
+            <div class="flex items-start justify-between gap-3">
+                <h2 class="text-lg font-semibold">Type-C zaryadlovchi</h2>
+                <span class="price-badge">320 000 so'mdan</span>
+            </div>
+            <p class="liquid-muted mt-3 text-sm">65W, 90W va 100W universal adapterlar.</p>
+        </article>
+        <article class="liquid-card price-card rounded-2xl p-5">
+            <div class="flex items-start justify-between gap-3">
+                <h2 class="text-lg font-semibold">Quvvat porti ta'miri</h2>
+                <span class="price-badge">220 000 so'mdan</span>
+            </div>
+            <p class="liquid-muted mt-3 text-sm">Zaryad uyasi, kabel va kontaktlarni tiklash.</p>
+        </article>
+        <article class="liquid-card price-card rounded-2xl p-5">
+            <div class="flex items-start justify-between gap-3">
+                <h2 class="text-lg font-semibold">Zaryad zanjiri diagnostikasi</h2>
+                <span class="price-badge">100 000 so'mdan</span>
+            </div>
+            <p class="liquid-muted mt-3 text-sm">Plata darajasida tok kelishini tekshirish.</p>
+        </article>
+        <article class="liquid-card price-card rounded-2xl p-5">
+            <div class="flex items-start justify-between gap-3">
+                <h2 class="text-lg font-semibold">Adapter kabeli</h2>
+                <span class="price-badge">70 000 so'mdan</span>
+            </div>
+            <p class="liquid-muted mt-3 text-sm">Shteker va kabel uzilishini almashtirish.</p>
+        </article>
+    </section>
+</main>
+
+<div th:replace="~{fragments :: stickyCta}"></div>
+<div th:replace="~{fragments :: chatWidget}"></div>
+<div th:replace="~{fragments :: footer}"></div>
+<script th:src="@{/js/chat.js}" defer></script>
+<script th:src="@{/js/telegram-visit.js}" defer></script>
+</body>
+</html>

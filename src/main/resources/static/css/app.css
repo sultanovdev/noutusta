@@ -93,6 +93,45 @@
     color: var(--liquid-text);
 }
 
+.liquid-category-menu > summary::-webkit-details-marker {
+    display: none;
+}
+
+.liquid-category-menu[open] > summary {
+    color: var(--liquid-text);
+}
+
+.liquid-category-dropdown {
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 0.8rem);
+    z-index: 70;
+    display: grid;
+    min-width: 15rem;
+    transform: translateX(-50%);
+    gap: 0.35rem;
+    border: 1px solid var(--liquid-stroke-soft);
+    border-radius: 1rem;
+    background: rgba(8, 18, 38, 0.94);
+    box-shadow: var(--liquid-shadow);
+    padding: 0.45rem;
+    backdrop-filter: blur(14px);
+}
+
+.liquid-category-link {
+    border-radius: 0.75rem;
+    color: var(--liquid-text-muted);
+    padding: 0.65rem 0.75rem;
+    transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+    white-space: nowrap;
+}
+
+.liquid-category-link:hover {
+    background: rgba(35, 66, 124, 0.46);
+    color: var(--liquid-text);
+    transform: translateX(2px);
+}
+
 .liquid-lang-switch {
     border: 1px solid var(--liquid-stroke-soft);
     background: rgba(14, 28, 56, 0.55);
@@ -203,6 +242,42 @@
     transform: translateY(-4px);
     border-color: var(--liquid-stroke);
     box-shadow: 0 20px 42px rgba(5, 12, 28, 0.56);
+}
+
+.category-card {
+    min-height: 12rem;
+}
+
+.category-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.45rem;
+    height: 2.45rem;
+    border: 1px solid rgba(117, 175, 255, 0.38);
+    border-radius: 0.85rem;
+    background: rgba(35, 66, 124, 0.38);
+    color: #cfe3ff;
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+.price-card {
+    min-height: 10.5rem;
+}
+
+.price-badge {
+    flex: 0 0 auto;
+    border: 1px solid rgba(89, 227, 178, 0.28);
+    border-radius: 999px;
+    background: rgba(22, 92, 78, 0.32);
+    color: #d8fff4;
+    font-size: 0.74rem;
+    font-weight: 800;
+    line-height: 1.2;
+    padding: 0.42rem 0.65rem;
+    text-align: right;
+    white-space: nowrap;
 }
 
 .liquid-muted {
@@ -343,6 +418,10 @@
     .liquid-body::before,
     .liquid-body::after {
         opacity: 0.8;
+    }
+
+    .price-badge {
+        white-space: normal;
     }
 
     .liquid-footer {
